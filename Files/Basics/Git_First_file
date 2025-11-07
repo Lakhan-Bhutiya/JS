@@ -1,0 +1,259 @@
+"use strict"; // Enforces stricter parsing and error handling
+
+// ===================================
+// ## 1. Variables (const, let)
+// ===================================
+// Use 'const' for values that won't change, 'let' for values that will.
+// Avoid 'var' due to its confusing scoping rules.
+
+console.log("--- 1. Variables ---");
+const userId = "USR-12345";
+let userName = "Alex";
+let userCity = "San Francisco";
+
+// userId = "USR-999"; // This would cause an error: Assignment to constant variable.
+
+userName = "Alex Johnson"; // This is fine
+
+// 'console.table' is great for viewing multiple related variables
+console.table([userId, userName, userCity]);
+
+// ===================================
+// ## 2. Data Types - Primitive
+// ===================================
+// Primitives are immutable (their value cannot be changed, only reassigned).
+
+console.log("\n--- 2. Data Types (Primitive) ---");
+
+// String: Text
+const productName = "Wireless Mouse";
+// Number: Integers and decimals
+const price = 49.99;
+// Boolean: True or false
+const inStock = true;
+// Null: Intentional absence of a value (is an object type, a JS quirk)
+const promoCode = null;
+// Undefined: A variable that has been declared but not assigned a value
+let shippingAddress;
+// Symbol: A unique and immutable value, often used for object keys
+const productSKU = Symbol("SKU-MOUSE-001");
+// BigInt: For numbers larger than the standard Number type can hold
+const veryLargeNumber = 9007199254740991n; // Note the 'n' at the end
+
+console.log("Type of productName:", typeof productName); // string
+console.log("Type of price:", typeof price); // number
+console.log("Type of inStock:", typeof inStock); // boolean
+console.log("Type of promoCode:", typeof promoCode); // ** object (this is a famous quirk) **
+console.log("Type of shippingAddress:", typeof shippingAddress); // undefined
+console.log("Type of productSKU:", typeof productSKU); // symbol
+console.log("Type of veryLargeNumber:", typeof veryLargeNumber); // bigint
+
+// ===================================
+// ## 3. Data Types - Reference (Non-Primitive)
+// ===================================
+// Reference types' values are stored as a reference in memory.
+
+console.log("\n--- 3. Data Types (Reference) ---");
+
+// Array: A list of values
+const shoppingCart = ["Mouse", "Keyboard", "Monitor"];
+
+// Object: A collection of key-value pairs
+const customer = {
+    firstName: "Alex",
+    lastName: "Johnson",
+    memberTier: "Gold"
+};
+
+// Function: A reusable block of code
+const greetUser = function(name) {
+    console.log(`Hello, ${name}!`);
+};
+
+console.log("Type of shoppingCart:", typeof shoppingCart); // object
+console.log("Type of customer:", typeof customer); // object
+console.log("Type of greetUser:", typeof greetUser); // function
+
+// ===================================
+// ## 4. Type Conversion & Coercion
+// ===================================
+// Explicitly converting types.
+
+console.log("\n--- 4. Type Conversion ---");
+let productRating = "4.5"; // This is a string
+
+// Convert string to number
+let ratingNumber = Number(productRating);
+console.log("Rating as number:", ratingNumber); // 4.5 (a number)
+
+let invalidNumber = Number("4.5stars");
+console.log("Invalid conversion:", invalidNumber); // NaN (Not a Number)
+
+// Convert to Boolean
+console.log("Boolean(''):", Boolean("")); // false
+console.log("Boolean('Alex'):", Boolean("Alex")); // true
+console.log("Boolean(0):", Boolean(0)); // false
+console.log("Boolean(1):", Boolean(1)); // true
+console.log("Boolean(null):", Boolean(null)); // false
+
+// Convert number to string
+let itemCode = 505;
+let itemCodeString = String(itemCode);
+console.log("Item code as string:", typeof itemCodeString); // string
+
+// ===================================
+// ## 5. Operations
+// ===================================
+console.log("\n--- 5. Operations ---");
+
+// Arithmetic
+let total = 50 + 10; // 60
+let difference = 50 - 10; // 40
+let product = 50 * 10; // 500
+let power = 2 ** 3; // 8 (2 to the power of 3)
+let quotient = 50 / 10; // 5
+let remainder = 51 % 10; // 1 (Modulo)
+
+console.log("Remainder of 51 / 10 is:", remainder);
+
+// String Concatenation & Coercion
+const firstName = "Alex";
+const lastName = "Johnson";
+console.log("Full name:", firstName + " " + lastName); // "Alex Johnson"
+
+// Tricky coercion rules (watch the order!)
+console.log("2 + 4 + '6'"); // "6" + "6" => "66"
+console.log("'2' + 4 + 6"); // "2" + 4 => "24" + 6 => "246"
+
+// Increment
+let itemsInCart = 5;
+itemsInCart++; // itemsInCart is now 6
+console.log("Items in cart:", itemsInCart);
+
+// ===================================
+// ## 6. Comparisons (Loose vs. Strict)
+// ===================================
+console.log("\n--- 6. Comparisons ---");
+
+// Loose Equality (==) - compares values after type coercion
+console.log("10 == '10':", 10 == "10"); // true (coerces string to number)
+
+// Strict Equality (===) - compares value AND type (Recommended)
+console.log("10 === '10':", 10 === "10"); // false (number vs string)
+console.log("10 === 10:", 10 === 10); // true (number vs number)
+
+// Tricky 'null' and 'undefined' comparisons
+console.log("null > 0:", null > 0); // false
+console.log("null == 0:", null == 0); // false
+console.log("null >= 0:", null >= 0); // true (this is a tricky one!)
+
+console.log("undefined == 0:", undefined == 0); // false
+console.log("undefined == null:", undefined == null); // true (only time loose equals is useful)
+console.log("undefined === null:", undefined === null); // false (different types)
+
+// ===================================
+// ## 7. Strings Methods
+// ===================================
+console.log("\n--- 7. Strings ---");
+
+// Using template literals (backticks) for interpolation
+const customerName = "Maria";
+console.log(`Welcome back to the store, ${customerName}!`);
+
+const productDescription = "  A new, shiny widget.  ";
+
+// .trim() - removes whitespace from both ends
+console.log("Trimmed:", productDescription.trim());
+
+// .toUpperCase() / .toLowerCase()
+console.log("Upper:", productDescription.toUpperCase());
+
+// .replace() - replaces the first occurrence
+console.log("Replaced:", productDescription.replace("new", "modern"));
+
+// .includes() - checks if a string contains a substring
+console.log("Includes 'shiny'?", productDescription.includes("shiny")); // true
+console.log("Includes 'dull'?", productDescription.includes("dull")); // false
+
+// .slice(startIndex, endIndex) - extracts a part of the string
+// (negative index starts from the end)
+const fullCode = "PROD-12345-US";
+console.log("SKU:", fullCode.slice(5, 10)); // "12345"
+console.log("Country:", fullCode.slice(-2)); // "US"
+
+// .split(separator) - splits a string into an array
+const tags = "electronics,gadgets,mouse,wireless";
+const tagArray = tags.split(',');
+console.log("Tags array:", tagArray); // ["electronics", "gadgets", "mouse", "wireless"]
+
+// ===================================
+// ## 8. Numbers and Math
+// ===================================
+console.log("\n--- 8. Numbers and Math ---");
+
+const itemPrice = 199.955;
+const quantity = -5; // A data error
+
+// .toFixed() - formats to a fixed number of decimal places (returns string)
+console.log("Formatted Price:", itemPrice.toFixed(2)); // "199.96" (rounds up)
+
+// .toLocaleString() - formats a number for a specific region
+const largeOrder = 1500000;
+console.log("Indian Format:", largeOrder.toLocaleString('en-IN')); // "15,00,000"
+console.log("US Format:", largeOrder.toLocaleString('en-US')); // "1,500,000"
+
+// Math Object
+console.log("Absolute Quantity:", Math.abs(quantity)); // 5
+console.log("Round Price:", Math.round(itemPrice)); // 200
+console.log("Round Up (Ceil):", Math.ceil(10.1)); // 11
+console.log("Round Down (Floor):", Math.floor(10.9)); // 10
+console.log("Max Price:", Math.max(10, 20, 15)); // 20
+console.log("Min Price:", Math.min(10, 20, 15)); // 10
+
+// Math.random() - returns a random number between 0 (inclusive) and 1 (exclusive)
+console.log("Random decimal:", Math.random());
+
+// Formula: Get a random integer between a min and max (inclusive)
+const min = 1000;
+const max = 5000;
+const randomOrderID = Math.floor(Math.random() * (max - min + 1)) + min;
+console.log(`Random Order ID (1000-5000): ${randomOrderID}`);
+
+// ===================================
+// ## 9. Dates
+// ===================================
+console.log("\n--- 9. Dates ---");
+
+// Creating a new date object
+let today = new Date();
+console.log("Current Time (String):", today.toString());
+console.log("Current Date (Readable):", today.toDateString());
+
+// Creating a specific date
+// Note: Months are 0-indexed (0 = January, 11 = December)
+let orderDate = new Date(2025, 10, 15, 10, 30, 0); // Nov 15, 2025 @ 10:30:00
+console.log("Order Date:", orderDate.toLocaleString());
+
+// Creating from a string
+let shippingDate = new Date("2025-11-20"); // ISO String format
+console.log("Shipping Date:", shippingDate.toDateString());
+
+// Timestamps (milliseconds since Jan 1, 1970)
+let orderTimestamp = orderDate.getTime();
+console.log("Order Timestamp (ms):", orderTimestamp);
+
+let rightNow = Date.now();
+console.log("Current Timestamp (ms):", rightNow);
+
+// Getting parts of a date
+console.log("Order Month (0-indexed):", orderDate.getMonth()); // 10 (for November)
+console.log("Order Day (of week):", orderDate.getDay()); // 6 (for Saturday)
+
+// Formatting with .toLocaleString() options
+const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+};
+console.log("Formatted Order Date:", orderDate.toLocaleString('en-US', options));
