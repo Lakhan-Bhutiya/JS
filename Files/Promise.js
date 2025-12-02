@@ -131,3 +131,11 @@ Promise.all([p1, p2, p3])
     .then((results) => console.log("All Results:", results))
     .catch((error) => console.log("Error in Promise.all:", error));
 
+const p4 = Promise.resolve("Task 1 Done");
+const p5 = Promise.reject("Task 2 Failed");
+const p6 = Promise.resolve("Task 3 Done");
+    
+Promise.allSettled([p4, p5, p6])
+      .then((results) => console.log(results));
+    
+
