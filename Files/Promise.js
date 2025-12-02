@@ -33,10 +33,11 @@ new Promise(function(resolve, reject) {
 
 const promiseThree = new Promise(function(resolve, reject) {
     setTimeout(function() {
-        resolve({ 
+        product_info = { 
             user: "aaa", 
             city: "AHEm" 
-        });
+        }
+        resolve(product_info);
     }, 1000);
 });
 
@@ -56,7 +57,7 @@ const promiseFour = new Promise(function(resolve, reject) {
         if (!error) {
             resolve({ 
                 product: "Laptop", 
-                price: 55000 
+                price: 882282 
             });
         } else {
             reject("ERROR: Unable to fetch product details");
