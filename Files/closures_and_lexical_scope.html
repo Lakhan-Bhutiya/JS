@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lexical Scope & Closure Demo</title>
+</head>
+<body style="background-color: #222; color: white;">
+    <button id="blue">Blue</button>
+    <button id="yellow">Yellow</button>
+</body>
+
+<script>
+   
+    // LEXICAL SCOPE EXAMPLE
+
+    function outerFunction() {
+        let message = "Hello from outer scope";
+
+        function innerFunction() {
+            console.log(message);     // Accessing parent's variable
+        }
+
+        innerFunction();
+    }
+
+    outerFunction();
+
+
+
+   
+    // CLOSURE EXAMPLE (FUNCTION RETURNING FUNCTION)
+
+    function createGreeter(name) {
+        const greeting = `Welcome, ${name}!`;
+
+        return function() {
+            console.log(greeting);    // closure holds "greeting"
+        };
+    }
+
+    const greetLakhan = createGreeter("Lakhan");
+    greetLakhan();    // prints: Welcome, Lakhan!
+
+
+    // DOM EVENT + CLOSURE EXAMPLE
+
+
+    function backgroundSetter(color) {
+        // Outer function holds "color"
+
+        return function() {
+            // Inner function uses "color" even after outer returns
+            document.body.style.backgroundColor = color;
+        };
+    }
+
+    document.getElementById("blue").onclick = backgroundSetter("blue");
+    document.getElementById("yellow").onclick = backgroundSetter("yellow");
+</script>
+
+</html>
