@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bind Example</title>
+</head>
+<body>
+
+    <button>Click Here</button>
+
+</body>
+
+<script>
+    class UIHandler {
+        constructor(){
+            this.app = "FrontendApp";
+            this.api = "https://localhost:8000";
+
+            // Binding 'this' to preserve context
+            document
+                .querySelector("button")
+                .addEventListener("click", this.handleClick.bind(this));
+        }
+
+        handleClick(){
+            console.log("Button pressed!");
+            console.log("API:", this.api);
+        }
+    }
+
+    const ui = new UIHandler();
+</script>
+
+</html>
