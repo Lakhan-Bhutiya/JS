@@ -14,7 +14,7 @@ GET /users/10
 Express checks top to bottom
 1. app.get('/')
 2. app.get('/users')
-3. app.get('/users/:id')  ✅ MATCH
+3. app.get('/users/:id')  //// MATCH
 
 Internally Express stores:
 { method: GET, path: '/', handler }
@@ -123,3 +123,4 @@ module.exports = router;
 // });
 
 // simple use app.use("/user", userRoutes);
+
